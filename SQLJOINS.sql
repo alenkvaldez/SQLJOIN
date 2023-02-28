@@ -15,7 +15,7 @@ where r.Rating = 5;
 /* joins: find the employee with the most total quantity sold.  use the sum() function and group by */
 SELECT e.FirstName, e.LastName, Sum(s.Quantity) AS Total FROM sales AS s
 INNER JOIN employees AS e ON e.EmployeeID = s.EmployeeID
-GROUP BY e.EmplyeeID
+GROUP BY e.EmployeeID
 ORDER BY Total DESC
 LIMIT 2;
 
@@ -26,7 +26,7 @@ WHERE c.Name = "Appliances" or c.Name = "Games";
 
 /* joins: find the product name, total # sold, and total price sold,
  for Eagles: Hotel California --You may need to use SUM() */
- SELECT p.Name, Sum(s.Qauntity) as "Total Sold", Sum(s.Quantity * s.PricePerUnit) as "Total Price"
+ SELECT p.Name, Sum(s.Quantity) as "Total Sold", Sum(s.Quantity * s.PricePerUnit) as "Total Price"
  FROM products as P
  INNER JOIN sales as s on s.ProductID = p.ProductID
  WHERE p.ProductID = 97;
@@ -47,7 +47,7 @@ This query should return:
 -  the employee's first and last name
 -  the name of each product
 -  and how many of that product they sold */
-SELECT e.EmplyeeID, e.FirstName, e.LastName, p.Name, SUM(s.Quantity) as TotalSold
+SELECT e.EmployeeID, e.FirstName, e.LastName, p.Name, SUM(s.Quantity) as TotalSold
 FROM Sales as S
 INNER JOIN employees as e on e.EmployeeID = s.EmployeeID
 INNER JOIN products as p on p.ProductID = s.ProductID
